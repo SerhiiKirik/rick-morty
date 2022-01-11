@@ -1,6 +1,6 @@
 # One page Rick and Morty character list
 - Click on the link to see the Characters List in action.
-- [DEMO LINK](https://serhiikirik.github.io/pokemon/)
+- [DEMO LINK](https://serhiikirik.github.io/rick-morty/)
 
 ## Description
 - Technology that was used: React, React Hooks, React Select, TypeScript, HTML5, BEM, SCSS;
