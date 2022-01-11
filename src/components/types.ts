@@ -18,3 +18,8 @@ export interface CharacterCards {
 export interface LastEpisode {
   name: string | undefined;
 }
+
+export interface ReactSelectOption<T> {
+  value: T;
+  label: string;
+}

@@ -1,14 +1,16 @@
-import React from "react";
-import { Card } from "../types";
+import React from 'react';
+import classNames from 'classnames';
+import { Card } from '../types';
 import './CharaterCard.scss';
-import classNames from "classnames";
 
 type Props = {
   card: Card;
 };
 
-export const CharacterCard: React.FC<Props> = ({card}) => {
-  const {image, origin, name, status} = card;
+export const CharacterCard: React.FC<Props> = ({ card }) => {
+  const {
+    image, origin, name, status,
+  } = card;
   const imageUrl = image;
 
   return (
@@ -25,21 +27,22 @@ export const CharacterCard: React.FC<Props> = ({card}) => {
         </div>
 
         <div className="characterCard__info">
-          <div className={classNames("characterCard__status",
-            { characterCard__status_red: status === 'Dead'}
-          ,
-          {characterCard__status_gray: status === 'unknown'}
-          )}>
+          <div className={classNames('characterCard__status',
+            { characterCard__status_red: status === 'Dead' },
+            { characterCard__status_gray: status === 'unknown' })}
+          >
             {status}
           </div>
 
-          <div className={'characterCard__location'}>
-            <span className={'characterCard__location-title'}>
+          <div className="characterCard__location">
+            <span className="characterCard__location-title">
               Location:
-            </span> {origin.name}
+            </span>
+            {' '}
+            {origin.name}
           </div>
         </div>
       </div>
     </>
   );
-}
+};

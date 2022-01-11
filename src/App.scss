@@ -2,6 +2,17 @@
 @import "utils/normalize";
 
 .App {
+  &__filters {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 300px;
+  }
+
+  &__CharacterFilters {
+    display: flex;
+
+  }
+
   &__wrapper {
     max-width: 1200px;
     margin: 0 auto;

@@ -21,6 +21,11 @@
 
     background-color: #6998ab;
     box-shadow: 13px 8px 11px 2px rgba(34, 60, 80, 0.2);
+
+    &__name {
+      font-size: 16px;
+      font-weight: bold;
+    }
   }
 
   &__info {
