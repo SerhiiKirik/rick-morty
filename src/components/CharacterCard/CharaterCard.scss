@@ -3,21 +3,42 @@
   cursor: pointer;
   border-radius: 4px;
   border: 2px solid #275ee0;
-  background-color: #fff;
+  background-color: #6998ab;
+  overflow: hidden;
+
+  &__name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__location {
+    padding: 8px;
+    &-title {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
 
   &__wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 20px;
   }
 
   &__img {
+    position: relative;
+    top: -16px;
+
     width: 100%;
   }
 
   &__status {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+
+    display: inline-block;
     background-color: green;
     padding: 4px;
     border-radius: 4px;

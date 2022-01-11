@@ -4,10 +4,11 @@ import { getMoreCharacters} from './api/api';
 import { Card } from "./components/types";
 import {CharacterList} from "./components/CharacterCardList/CharacterCardList";
 import {CharacterStats} from "./components/CharacterStats/CharacterStats";
+import {Oval} from "react-loader-spinner";
 
 
 export const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [characters, setCharacters] = useState<Card[] | []>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -31,17 +32,31 @@ export const App: React.FC = () => {
       });
 
       return newPageNumber;
-    });
+    }), [pageNumber];
   };
 
   console.log(characters, isLoading)
 
   return (
-    <div>
+    <div className={'App__wrapper'}>
+      {!isLoading && !characters.length &&
+      <h2 className={'App__noCharacters'}>Have not characters</h2>
+      }
+
       <CharacterList
         setSelectedId={setSelectedId}
         characterCards={characters}
       />
+
+      {isLoading && !characters.length && (
+        <div className="App__loader">
+          <Oval
+            color="#000"
+            height={150}
+            width={150}
+          />
+        </div>
+      )}
 
       {selectedId && (
         <CharacterStats

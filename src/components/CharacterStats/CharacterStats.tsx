@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Card} from "../types";
 import {getSelectedCharacter} from "../../api/api";
 import { Oval } from 'react-loader-spinner';
+import './CharacterStats.scss';
 
 type Props = {
   selectedId: number;

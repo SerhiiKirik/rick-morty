@@ -25,7 +25,6 @@ export const CharacterCard: React.FC<Props> = ({card}) => {
         </div>
 
         <div className="characterCard__info">
-          <span>Status: </span>
           <div className={classNames("characterCard__status",
             { characterCard__status_red: status === 'Dead'}
           ,
@@ -35,7 +34,9 @@ export const CharacterCard: React.FC<Props> = ({card}) => {
           </div>
 
           <div className={'characterCard__location'}>
-            'Location' {origin.name}
+            <span className={'characterCard__location-title'}>
+              Location:
+            </span> {origin.name}
           </div>
         </div>
       </div>

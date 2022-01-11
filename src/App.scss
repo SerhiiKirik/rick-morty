@@ -1,1 +1,48 @@
-// styles go here
+@import "utils/reset";
+@import "utils/normalize";
+
+.App {
+  &__wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 38px;
+  }
+
+  &__noCharacters {
+    max-width: 1200px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  &__button {
+    display: block;
+    width: 80%;
+    height: 30px;
+    border: 2px solid #275ee0;
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: #b1d0e0;
+
+    color: #275ee0;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+
+    transition: background-color 0.2s, color 0.2s;
+
+    &:not(:last-child) {
+      margin-right: 14px;
+    }
+
+    &:hover {
+      background-color: #275ee0;
+      color: #fff;
+    }
+
+    &:disabled {
+      cursor: wait;
+      filter: grayscale(70%);
+    }
+  }
+}
