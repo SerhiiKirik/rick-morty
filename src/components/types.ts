@@ -23,3 +23,9 @@ export interface ReactSelectOption<T> {
   value: T;
   label: string;
 }
+
+export interface Filters {
+  firstSelect: string;
+  secondSelect: string;
+  thirdSelect: string;
+}

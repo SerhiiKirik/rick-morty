@@ -1,20 +1,17 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './App.scss';
 import { Oval } from 'react-loader-spinner';
+import { MultiValue } from 'react-select';
 import { getMoreCharacters } from './api/api';
-import {Card, ReactSelectOption} from './components/types';
+import { Card, ReactSelectOption } from './components/types';
 import { CharacterList } from './components/CharacterCardList/CharacterCardList';
 import { CharacterStats } from './components/CharacterStats/CharacterStats';
-import {MultiValue} from "react-select";
-import {CharacterFilters} from "./components/CharacterFilters/CharacterFilters";
+import { CharacterFilters } from './components/CharacterFilters/CharacterFilters';
 
 export const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [characters, setCharacters] = useState<Card[] | []>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [statusFilter, setStatusFilter] = useState<MultiValue<ReactSelectOption<string>>>([]);
-  const [genderFilter, setGenderFilter] = useState<MultiValue<ReactSelectOption<string>>>([]);
-
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<MultiValue<ReactSelectOption<string>>>([]);
 
@@ -47,35 +44,22 @@ export const App: React.FC = () => {
 
     const preparedFilters = selectedFilters.map(filter => filter.value);
 
-    return characters.filter(character => preparedFilters.some(el => el.includes(character.species))
+    const filterBySpecies = characters.filter(
+      character => preparedFilters.some(element => element.includes(character.species)),
     );
+
+    return filterBySpecies;
   }, [selectedFilters, characters]);
 
   const species = [
-    "Human", "Alien", "Humanoid",
-    "Poopybutthole", "Mythological", "Unknown",
-    "Animal", "Disease","Robot","Cronenberg","Planet",
+    'Human', 'Alien', 'Humanoid',
+    'Poopybutthole', 'Mythological', 'Unknown',
+    'Animal', 'Disease', 'Robot', 'Cronenberg', 'Planet',
   ];
-  const genders = ["female", "male", "genderless", "unknown"];
-  const status = ["Alive", "Dead", "Unknown"];
 
   return (
     <div className="App__wrapper">
       <div className="App__CharacterFilters">
-        <CharacterFilters
-          selectedFilters={genderFilter}
-          setSelectedFilters={setGenderFilter}
-          className="App__filters"
-          filter={genders}
-        />
-
-        <CharacterFilters
-          selectedFilters={statusFilter}
-          setSelectedFilters={setStatusFilter}
-          className="App__filters"
-          filter={status}
-        />
-
         <CharacterFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
