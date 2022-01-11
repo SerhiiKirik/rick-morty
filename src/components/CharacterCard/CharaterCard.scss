@@ -1,0 +1,33 @@
+.characterCard {
+  position: relative;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 2px solid #275ee0;
+  background-color: #fff;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__status {
+    background-color: green;
+    padding: 4px;
+    border-radius: 4px;
+
+    &_red {
+      background-color: red;
+    }
+
+    &_gray {
+      background-color: gray;
+    }
+  }
+}

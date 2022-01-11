@@ -8,8 +8,13 @@ export interface Card {
   origin: {
     name: string;
   };
+  episode: string[];
 }
 
 export interface CharacterCards {
   results: Card[];
+}
+
+export interface LastEpisode {
+  name: string | undefined;
 }

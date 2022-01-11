@@ -1,4 +1,4 @@
-import { CharacterCards } from '../components/types';
+import {Card, CharacterCards} from '../components/types';
 import {BASE_URL, CHARACTER} from "./consts";
 
 export const getData = (url: string) => (
@@ -11,7 +11,11 @@ export const get = (url: string) => (
     .then(response => response.json())
 );
 
-export const getCharacters = (): Promise<CharacterCards>  => (
-  getData(CHARACTER)
+export const getMoreCharacters = (pageNumber: number): Promise<CharacterCards> => (
+  getData(`${CHARACTER}/?page=${pageNumber}`)
+);
+
+export const getSelectedCharacter = (id: number): Promise<Card> => (
+    getData(`${CHARACTER}/${id}`)
 );
 
