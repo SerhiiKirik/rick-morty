@@ -7,10 +7,11 @@ interface Props {
   setSelectedFilters: (filters: MultiValue<ReactSelectOption<string>>) => void;
   className: string;
   filter: string[];
+  placeholder: string;
 };
 
 export const CharacterFilters: React.FC<Props> = ({
-  selectedFilters,setSelectedFilters, filter,}) => {
+  selectedFilters,setSelectedFilters, filter, className, placeholder}) => {
   const [options, setOptions] = useState<MultiValue<ReactSelectOption<string>>>([]);
 
   useEffect(() => {
@@ -21,13 +22,13 @@ export const CharacterFilters: React.FC<Props> = ({
     }, []);
 
   return (
-    <div className={'App__filters'}>
+    <div className={className}>
       <Select
         options={options}
         isMulti
         value={selectedFilters}
         onChange={(filters) => setSelectedFilters(filters)}
-        placeholder={'Select species'}
+        placeholder={placeholder}
       />
     </div>
   );

@@ -14,6 +14,8 @@ export const App: React.FC = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<MultiValue<ReactSelectOption<string>>>([]);
+  const [selectedStatus, setSelectedStatus] = useState<MultiValue<ReactSelectOption<string>>>([]);
+  const [selectedGenders, setSelectedGenders] = useState<MultiValue<ReactSelectOption<string>>>([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,24 +40,39 @@ export const App: React.FC = () => {
   };
 
   const preparedCharacters = useMemo(() => {
-    if (!selectedFilters.length) {
-      return characters;
-    }
 
     const preparedFilters = selectedFilters.map(filter => filter.value);
+    const preparedFiltersGender = selectedGenders.map(filter => filter.value);
+    const preparedFiltersStatus = selectedStatus.map(filter => filter.value);
 
     const filterBySpecies = characters.filter(
-      character => preparedFilters.some(element => element.includes(character.species)),
-    );
+      character => {
+        const isFilterChosen = preparedFilters.length ? preparedFilters.some(element =>
+            element.includes(character.species)) : true;
+
+        const isGenderChosen = preparedFiltersGender.length
+          ? preparedFiltersGender.some(element => element.includes(character.gender))
+          : true;
+
+        const isStatusChosen = preparedFiltersStatus.length
+          ? preparedFiltersStatus.some(element => element.includes(character.status))
+          : true;
+
+        return isFilterChosen && isGenderChosen && isStatusChosen;
+      });
 
     return filterBySpecies;
-  }, [selectedFilters, characters]);
+  }, [selectedFilters, characters, selectedStatus, selectedGenders]);
+
+  console.log(preparedCharacters)
 
   const species = [
     'Human', 'Alien', 'Humanoid',
     'Poopybutthole', 'Mythological', 'Unknown',
     'Animal', 'Disease', 'Robot', 'Cronenberg', 'Planet',
   ];
+  const status = ["Alive", "Dead", "Unknown"];
+  const genders = ["Female", "Male", "Genderless", "Unknown"];
 
   return (
     <div className="App__wrapper">
@@ -65,6 +82,23 @@ export const App: React.FC = () => {
           setSelectedFilters={setSelectedFilters}
           className="App__filters"
           filter={species}
+          placeholder={'Select species'}
+        />
+
+        <CharacterFilters
+          selectedFilters={selectedStatus}
+          setSelectedFilters={setSelectedStatus}
+          className={"App__filters"}
+          filter={status}
+          placeholder={'Select status'}
+        />
+
+        <CharacterFilters
+          selectedFilters={selectedGenders}
+          setSelectedFilters={setSelectedGenders}
+          className={"App__filters"}
+          filter={genders}
+          placeholder={'Select genders'}
         />
       </div>
 
