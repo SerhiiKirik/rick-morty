@@ -40,15 +40,15 @@ export const App: React.FC = () => {
   };
 
   const preparedCharacters = useMemo(() => {
-
     const preparedFilters = selectedFilters.map(filter => filter.value);
     const preparedFiltersGender = selectedGenders.map(filter => filter.value);
     const preparedFiltersStatus = selectedStatus.map(filter => filter.value);
 
     const filterBySpecies = characters.filter(
       character => {
-        const isFilterChosen = preparedFilters.length ? preparedFilters.some(element =>
-            element.includes(character.species)) : true;
+        const isFilterChosen = preparedFilters.length
+          ? preparedFilters.some(element => element.includes(character.species))
+          : true;
 
         const isGenderChosen = preparedFiltersGender.length
           ? preparedFiltersGender.some(element => element.includes(character.gender))
@@ -59,20 +59,19 @@ export const App: React.FC = () => {
           : true;
 
         return isFilterChosen && isGenderChosen && isStatusChosen;
-      });
+      },
+    );
 
     return filterBySpecies;
   }, [selectedFilters, characters, selectedStatus, selectedGenders]);
-
-  console.log(preparedCharacters)
 
   const species = [
     'Human', 'Alien', 'Humanoid',
     'Poopybutthole', 'Mythological', 'Unknown',
     'Animal', 'Disease', 'Robot', 'Cronenberg', 'Planet',
   ];
-  const status = ["Alive", "Dead", "Unknown"];
-  const genders = ["Female", "Male", "Genderless", "Unknown"];
+  const status = ['Alive', 'Dead', 'Unknown'];
+  const genders = ['Female', 'Male', 'Genderless', 'Unknown'];
 
   return (
     <div className="App__wrapper">
@@ -82,23 +81,23 @@ export const App: React.FC = () => {
           setSelectedFilters={setSelectedFilters}
           className="App__filters"
           filter={species}
-          placeholder={'Select species'}
+          placeholder="Select species"
         />
 
         <CharacterFilters
           selectedFilters={selectedStatus}
           setSelectedFilters={setSelectedStatus}
-          className={"App__filters"}
+          className="App__filters"
           filter={status}
-          placeholder={'Select status'}
+          placeholder="Select status"
         />
 
         <CharacterFilters
           selectedFilters={selectedGenders}
           setSelectedFilters={setSelectedGenders}
-          className={"App__filters"}
+          className="App__filters"
           filter={genders}
-          placeholder={'Select genders'}
+          placeholder="Select genders"
         />
       </div>
 
